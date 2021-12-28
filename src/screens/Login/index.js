@@ -16,7 +16,7 @@ const Login = () => {
     const {authDispatch, authState: {loading, error, data}} = useContext(GlobalContext);
     
     useEffect(() => {
-      if(params?.data) {
+      if(params?.data) { 
         setJustSignedUp(true);
         setForm({...form, userName: params.data.username});
       }

@@ -1,6 +1,6 @@
 import React from 'react'; 
 import { Image, StyleSheet, Alert, Text, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from '../../components/common/Icon'
 import colors from '../../assets/themes/colors';
 import Container from '../../components/common/Container';
 import { SETTINGS } from '../../constants/routNames';
@@ -28,8 +28,28 @@ const SideMenu = ({navigation, authDispatch}) => {
         ])
     }
     const menuItems = [
-        {icon: <Icon name="settings" size={21} style={{color: colors.primary}}></Icon>, name : 'Settings', onPress: () => navigation.navigate(SETTINGS) },
-        {icon: <Icon name="logout" size={21} style={{color: colors.danger}}></Icon>, name: 'Logout', onPress: handleLogout},
+      {
+        icon: (
+          <Icon
+            type="material"
+            name="settings"
+            size={21}
+            style={{color: colors.primary}}></Icon>
+        ),
+        name: 'Settings',
+        onPress: () => navigation.navigate(SETTINGS),
+      },
+      {
+        icon: (
+          <Icon
+            type="material"
+            name="logout"
+            size={21}
+            style={{color: colors.danger}}></Icon>
+        ),
+        name: 'Logout',
+        onPress: handleLogout,
+      },
     ];
         return (
             <View>
