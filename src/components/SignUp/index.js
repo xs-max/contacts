@@ -8,6 +8,7 @@ import { LOGIN } from '../../constants/routNames';
 import colors from '../../assets/themes/colors';
 import Message from '../common/Message';
 import envs from '../../config/env';
+import Icon from '../common/Icon';
 
 const RegisterComponent = ({onSubmit, onChange, form, loading, error, errors}) => {
     const {navigate} = useNavigation();
@@ -72,7 +73,7 @@ const RegisterComponent = ({onSubmit, onChange, form, loading, error, errors}) =
                         // style={}
                         label="Password"
                         icon={  <TouchableOpacity onPress={() => setIsSecureEntry(!isSecureEntry)}>
-                                    <Text>{isSecureEntry ? 'SHOW' : 'HIDE'} </Text>
+                                    <Text>{isSecureEntry ? <Icon type="awesome" name="eye" size={20}  /> : <Icon type="awesome" name="eye-slash" size={20} /> } </Text>
                                 </TouchableOpacity> }
                         iconPosition="right"
                         placeholder="Enter Password"

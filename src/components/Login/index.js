@@ -7,6 +7,7 @@ import Input from '../../components/common/Input';
 import {REGISTER} from '../../constants/routNames';
 import Message from '../common/Message';
 import colors from '../../assets/themes/colors';
+import Icon from '../common/Icon'
 
 const LoginComponent = ({
   error,
@@ -64,7 +65,7 @@ const LoginComponent = ({
             icon={
               <TouchableOpacity
                 onPress={() => setIsSecureEntry(!isSecureEntry)}>
-                <Text>{isSecureEntry ? 'SHOW' : 'HIDE'} </Text>
+                <Text>{isSecureEntry ? <Icon type="awesome" name="eye" size={20}  /> : <Icon type="awesome" name="eye-slash" size={20} /> } </Text>
               </TouchableOpacity>
             }
             iconPosition="right"

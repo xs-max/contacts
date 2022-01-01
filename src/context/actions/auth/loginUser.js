@@ -4,7 +4,7 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
 } from '../../../constants/actionTypes';
-import axiosInstance from '../../../helpers/axiosInterceptors';
+import axiosInstance from '../../../helpers/axiosInstance';
 
 export default ({password, userName: username}) => (dispatch) => {
   dispatch({
