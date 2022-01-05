@@ -15,7 +15,6 @@ const Contacts = () => {
         getContacts()(contactDispatch);
     }, [])
 
-    console.log(loading, data, error)
     useEffect(() => {
         setOptions({headerLeft: () => (
             <TouchableOpacity onPress={() => toggleDrawer()}>
