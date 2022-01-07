@@ -4,6 +4,7 @@ import CreateContactComponent from '../../components/CreatContactComponent'
 import createContact from '../../context/actions/contacts/createContacts';
 import { GlobalContext } from '../../context/Provider';
 import {CONTACT_LIST} from '../../constants/routNames';
+import uploadImage from '../../helpers/uploadImage';
 
 
 const CreateContact = () => {
@@ -19,12 +20,23 @@ const CreateContact = () => {
       },
     } = useContext(GlobalContext);
     const [form, setForm] = useState({});
+    const[uploading, setIsUploading] = useState(false);
     const onChangeText = ({name, value}) => {
         setForm({...form, [name]: value});
     }
 
     const onSubmit = () => {
+      if(localFile?.size) {
+        setIsUploading(true);
+        uploadImage(localFile)((url) => {
+          setIsUploading(false);
+          createContact({...form, contactPicture: url})(contactDispatch)(() => navigate(CONTACT_LIST));
+        })((error) => {
+          setIsUploading(false);
+        })
+      }else {
         createContact(form)(contactDispatch)(() => navigate(CONTACT_LIST));
+      }
     }
 
     const toggleValueChange = () => {
@@ -55,7 +67,7 @@ const CreateContact = () => {
         openSheet={openSheet}
         toggleValueChange={toggleValueChange}
         error={error}
-        loading={loading}
+        loading={loading || uploading}
         form={form}
         setForm={setForm}
         onSubmit={onSubmit}

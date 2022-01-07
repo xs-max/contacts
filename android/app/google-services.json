@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "661513001372",
+    "project_id": "max-contacts",
+    "storage_bucket": "max-contacts.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661513001372:android:c7aefe6b5a0d4c74d69059",
+        "android_client_info": {
+          "package_name": "com.max.contacts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661513001372-diodljq17ev2c9kir9qi3ikeu037df8p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClZ21IG75YokClle225Z872QxpnbnOYD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661513001372-diodljq17ev2c9kir9qi3ikeu037df8p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "661513001372-uoieva6mfa2dukg8ooqchagcs97bo6hn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.max.contacts"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

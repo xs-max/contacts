@@ -1,18 +1,23 @@
 import React from 'react'
 import { View, Text, Modal, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
+import PropTypes from 'prop-types'
 import colors from '../../../assets/themes/colors';
 import Icon from '../Icon';
 
-const AppModal = ({modalVisible, modalFooter, modalBody, title, setModalVisible}) => {
+const AppModal = ({closeOnTouchOutside, modalVisible, modalFooter, modalBody, title, setModalVisible}) => {
     return (
       <Modal visible={modalVisible} transparent={true}>
         <TouchableOpacity
           style={styles.wrapper}
-          onPress={() => setModalVisible(false)}>
+          onPress={() => {
+            if (closeOnTouchOutside) setModalVisible;
+          }}>
           <View style={styles.modalView}>
             <ScrollView>
               <View style={styles.header}>
-                <Icon size={27} type="evil" name="close" />
+                <TouchableOpacity onPress={() => setModalVisible(false)}>
+                  <Icon size={27} type="evil" name="close" />
+                </TouchableOpacity>
                 <Text style={styles.title}>{title || 'MaxContacts'}</Text>
                 <View />
                 <View />
@@ -43,6 +48,15 @@ const AppModal = ({modalVisible, modalFooter, modalBody, title, setModalVisible}
       </Modal>
     );
 }
+
+AppModal.propTypes = {
+  closeOnTouchOutside: PropTypes.bool,
+}
+ 
+AppModal.defaultProps = {
+  closeOnTouchOutside: true,
+};
+
 
 const styles = StyleSheet.create({
   wrapper: {

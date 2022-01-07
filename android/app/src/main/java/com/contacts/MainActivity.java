@@ -1,4 +1,4 @@
-package com.contacts;
+package com.max.contacts;
 
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;

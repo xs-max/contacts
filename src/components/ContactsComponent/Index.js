@@ -2,13 +2,11 @@ import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { View, Text, SafeAreaView, FlatList, TouchableOpacity, ActivityIndicator, Image, StyleSheet } from 'react-native'
 import colors from '../../assets/themes/colors'
-import AppModal from '../common/AppModal'
-import CustomButton from '../common/CustomButton'
 import Icon from '../common/Icon'
 import Message from '../common/Message'
 import { CREATE_CONTACT } from '../../constants/routNames'
 
-const ContactsComponent = ({modalVisible, loading, data, setModalVisible}) => {
+const ContactsComponent = ({sortBy, loading, data, setModalVisible}) => {
 
     const {navigate} = useNavigation();
     const ListEmptyComponent = () => {
@@ -18,6 +16,7 @@ const ContactsComponent = ({modalVisible, loading, data, setModalVisible}) => {
             </View>
         )
     }
+
 
     const renderItem = ({item}) => {
       const {contact_picture, first_name, last_name, phone_number, country_code} = item;
@@ -59,17 +58,7 @@ const ContactsComponent = ({modalVisible, loading, data, setModalVisible}) => {
     return (
       <>
         <View style={{backgroundColor: colors.white, height: "100%"}}>
-          <AppModal
-            setModalVisible={setModalVisible}
-            modalVisible={modalVisible}
-            modalFooter={<></>}
-            modalBody={
-              <View>
-                <Text>Hello from the Modal</Text>
-              </View>
-            }
-            title="My Profile"
-          />
+          
           {loading && (
             <View style={{paddingVertical: 100, paddingHorizontal: 100}}>
               <ActivityIndicator size="large" color={colors.primary} />
@@ -78,7 +67,21 @@ const ContactsComponent = ({modalVisible, loading, data, setModalVisible}) => {
           {!loading && (
             <View style={{paddingVertical: 20}}>
               <FlatList
-                data={data}
+                data={sortBy ? data.sort((a, b) => {
+                  if(sortBy == "First Name") {
+                    if(b.first_name > a.first_name) {
+                      return -1
+                    }else{ 
+                      return 1
+                    }
+                  }else {
+                    if (b.last_name > a.last_name) {
+                      return -1;
+                    } else {
+                      return 1;
+                    }
+                  }
+                }) : data}
                 ListEmptyComponent={ListEmptyComponent}
                 renderItem={renderItem}
                 keyExtractor={item => String(item.id)}
