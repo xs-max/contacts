@@ -25,12 +25,16 @@ const CreateContactComponent = ({
   return (
     <View style={styles.container}>
       <Container>
-        <Image source={{uri: localFile?.path || DEFAULT_IMAGE_URI}} style={styles.imageView} />
+        <Image
+          source={{uri: localFile?.path || DEFAULT_IMAGE_URI}}
+          style={styles.imageView}
+        />
         <TouchableOpacity onPress={openSheet}>
           <Text style={styles.pickText}>Pick Image</Text>
         </TouchableOpacity>
         <Input
           label="First Name"
+          value={form.firstName || ''}
           placeholder="Enter First name"
           onChangeText={value =>
             onChangeText({name: 'firstName', value: value})
@@ -42,6 +46,7 @@ const CreateContactComponent = ({
           placeholder="Enter Last name"
           onChangeText={value => onChangeText({name: 'lastName', value: value})}
           error={error?.last_name?.[0]}
+          value={form.lastName || ''}
         />
         <Input
           icon={
@@ -66,6 +71,7 @@ const CreateContactComponent = ({
           onChangeText={value =>
             onChangeText({name: 'phoneNumber', value: value})
           }
+          value={form.phoneNumber || ''}
           error={error?.phone_number?.[0]}
         />
 
@@ -78,8 +84,8 @@ const CreateContactComponent = ({
           }}>
           <Text style={{fontSize: 17}}>Add To Favorites</Text>
           <Switch
-            trackColor={{false: '#767577', true: colors.primary}}
-            thumbColor={colors.white}
+            trackColor={{false: 'blue', true: colors.primary}}
+            thumbColor="#FFFFFF"
             ios_backgroundColor="#3e3e3e"
             onValueChange={toggleValueChange}
             value={form.isFavorite}

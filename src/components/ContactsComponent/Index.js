@@ -4,7 +4,7 @@ import { View, Text, SafeAreaView, FlatList, TouchableOpacity, ActivityIndicator
 import colors from '../../assets/themes/colors'
 import Icon from '../common/Icon'
 import Message from '../common/Message'
-import { CREATE_CONTACT } from '../../constants/routNames'
+import { CREATE_CONTACT, CONTACT_DETAILS } from '../../constants/routNames'
 
 const ContactsComponent = ({sortBy, loading, data, setModalVisible}) => {
 
@@ -21,7 +21,9 @@ const ContactsComponent = ({sortBy, loading, data, setModalVisible}) => {
     const renderItem = ({item}) => {
       const {contact_picture, first_name, last_name, phone_number, country_code} = item;
         return (
-          <TouchableOpacity style={styles.itemContainer}>
+          <TouchableOpacity style={styles.itemContainer} onPress={() => {
+            navigate(CONTACT_DETAILS, {item})
+          }}>
             <View style={styles.item}>
               {contact_picture ? (
                 <Image

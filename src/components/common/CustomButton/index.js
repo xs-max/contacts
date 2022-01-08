@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import colors from '../../../assets/themes/colors'
 
-const CustomButton = ({title, primary, secondary, danger, disabled, loading, onPress, ...props}) => {
+const CustomButton = ({title, primary, secondary, danger, disabled, loading, onPress, style}) => {
 
     const [] = useState()
 
@@ -23,7 +23,7 @@ const CustomButton = ({title, primary, secondary, danger, disabled, loading, onP
         <TouchableOpacity 
             disabled={disabled}
             onPress={onPress}
-            style={[styles.wrapper, {backgroundColor: getBgColor()}]}
+            style={[styles.wrapper, {backgroundColor: getBgColor()}, style]}
         >
             <View style={styles.loaderSection}>
                 {loading && <ActivityIndicator color={primary ?  colors.secondary : colors.primary} />}

@@ -8,8 +8,13 @@ import Icon from '../../components/common/Icon'
 import ContactsComponent from '../../components/ContactsComponent/Index';
 import getContacts from '../../context/actions/contacts/getContacts';
 import {GlobalContext} from '../../context/Provider';
+import { useRef } from 'react';
+import { navigate } from '../../Navigations/RootNavigation';
+import { CONTACT_DETAILS } from '../../constants/routNames';
 
 const Contacts = () => {
+
+    const contactRef = useRef([]);
 
     const [sortBy, setSortBy] = useState(null);
     const {setOptions, toggleDrawer} = useNavigation();
@@ -34,6 +39,20 @@ const Contacts = () => {
             return () => {}
         }, [])
     )
+
+    useEffect(() => {
+        const prev = contactRef.current;
+
+        contactRef.current = data;
+
+        const newList = contactRef.current;
+
+        if(newList.length - prev.length === 1) {
+            const newContact = newList.find(item => !prev.map((i) => i.id).includes(item.id));
+            navigate(CONTACT_DETAILS, {item: newContact});
+        }
+    }, [data.length])
+
 
     useEffect(() => {
         setOptions({headerLeft: () => (
